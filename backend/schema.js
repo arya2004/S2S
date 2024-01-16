@@ -29,4 +29,4 @@ newUser.save(function(err) {
     console.log("User data");
 });
 
-module.exports = User;
+module.exports = {User};
