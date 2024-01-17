@@ -9,19 +9,46 @@ function HomeScreen({navigation}:{navigation:any}) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{color:"black"}}>Home Screen</Text>
+      <View style={{width:"100%",display:"flex",gap:4}}>
+
       <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
+        title="1"
+        onPress={() => {
+          navigation.navigate('Details',{
+          buttonID:1
+          })
+      }}
+        />
+      <Button
+        title="2"
+        onPress={() => {
+          navigation.navigate('Details',{
+          buttonID:2
+          })
+      }}
+        />
+      <Button
+        title="3"
+        onPress={() => {
+          navigation.navigate('Details',{
+          buttonID:3
+          })
+      }}
+        />
+      
+     
+        </View>
 
     </View>
   );
 }
 
-function DetailsScreen() {
+function DetailsScreen({route,navigation}:{route:any,navigation:any}) {
+  let {buttonID} = route.params
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text style={{color:"black"}}>Details Screen</Text>
+      <Text style={{color:"black"}}>You pressed on button:{JSON.stringify(buttonID)}</Text>
     </View>
   );
 }
