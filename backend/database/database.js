@@ -8,7 +8,7 @@ const connectDB = async () => {
 
     mongoose.set('strictQuery', false);
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
-        dbName: "s2s db"
+        dbName: "s2sdb"
     }).then(() => console.log("database connected"))
     .catch((e) => { console.log(e) })
 }

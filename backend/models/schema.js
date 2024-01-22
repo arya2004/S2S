@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -24,9 +24,13 @@ const newUser = new User({
     password: 'password123'
 })
 
-newUser.save(function(err) {
-    if (err) return console.error(err);
-    console.log("User data");
-});
 
-module.exports = {User};
+const saveUser = async () => {
+    try {
+        await saveUser.save();
+        console.log('User saved');
+    } catch (error) {
+        console.error();
+    }
+}
+export default User;
