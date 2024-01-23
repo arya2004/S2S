@@ -1,6 +1,7 @@
 import express from "express";
 import { connectDB } from "./database/database.js";
 import User from "./models/schema.js";
+import Partner from "./models/partnerSchema.js";
 const app = express();
 
 app.use(express.json());
@@ -27,6 +28,8 @@ app.post("/users", async (req, res) => {
  
 });
 
+
+
 app.get("/users", async (req, res) => {
   try {
     const users = await User.find({});
@@ -34,4 +37,25 @@ app.get("/users", async (req, res) => {
   } catch (error) {
     res.status(500).send(error);
   }
+});
+
+
+app.get("/partner", async (req, res) => {
+  try {
+    const partners = await Partner.find({});
+    res.send(partners);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+
+app.post("/partner", async (req, res) => {
+  try{
+    const partner = await Partner.create(req.body);
+    res.status(200).json(partner);
+  } catch (error) {
+    res.status(500).json({message: error.message});
+  }
+ 
 });

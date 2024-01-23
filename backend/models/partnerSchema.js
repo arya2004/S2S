@@ -1,7 +1,7 @@
 
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema({
+const partnerSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -11,25 +11,22 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    password: {
-        type: String,
+    phone: {
+        type: Number,
+        required: true,
+        unique: true
+    },
+    deliveries: {
+        type: Number,
         required: true
     },
-    loginDate: {
-        type: Date,
-        default: Date.now
+    rewards: {
+        type: [String],     
     }
+    
 })
 
-const User = mongoose.model('User', userSchema);
-
-const newUser = new User({
-    name: 'John Doe',
-    email: "john@emaple.com",
-    password: 'password123'
-})
-
-
+const Partner = mongoose.model('Partner', partnerSchema);
 
 
 const saveUser = async () => {
@@ -40,4 +37,4 @@ const saveUser = async () => {
         console.error();
     }
 }
-export default User;
+export default Partner;
