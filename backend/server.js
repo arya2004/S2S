@@ -18,6 +18,8 @@ connectDB().then(() => {
   });
 });
 
+// API for users
+
 app.post("/users", async (req, res) => {
   try{
     const user = await User.create(req.body);
@@ -28,7 +30,18 @@ app.post("/users", async (req, res) => {
  
 });
 
+app.put("/users/:id", async (req, res) => {
+  const { id } = req.params;
+  await User.updateOne({_id: id}, req.body);
+  const updatedUser = await DocumentFragment.findById(id);
+  return res.status(200).json(updatedUser);
+});
 
+app.delete("/users/:id", async(req, res) => {
+  const {id} = req.params;
+  const deletedUser = await User.findByIdAndDelete(id);
+  return res.status(200).json(deletedUser);
+})
 
 app.get("/users", async (req, res) => {
   try {
@@ -39,7 +52,19 @@ app.get("/users", async (req, res) => {
   }
 });
 
+app.get("/users/:id", async(req, res) => {
+  try{
+    const {id} = req.params;
+    const user = await User.findById(id);
+    res.status(200).json(user);
+  } catch(error) {
+    res.status(500).json({message: error.message});
+  }
+})
 
+
+
+// API for delivery partners
 app.get("/partner", async (req, res) => {
   try {
     const partners = await Partner.find({});
@@ -49,6 +74,15 @@ app.get("/partner", async (req, res) => {
   }
 });
 
+app.get("/partner/:id", async(req, res) => {
+  try{
+    const {id} = req.params;
+    const partner = await Partner.findById(id);
+    res.status(200).json(partner);
+  } catch (error) {
+    res.status(500).json({message: error.message});
+  }
+})
 
 app.post("/partner", async (req, res) => {
   try{
@@ -59,3 +93,16 @@ app.post("/partner", async (req, res) => {
   }
  
 });
+
+app.put("partner/:id", async (req, res) => {
+  const {id} = req.params;
+  await Partner.updateOne({_id: id}, req.body);
+  const updatedPartner = await Partner.findById(id);
+  return res.status(200).json(updatedPartner);
+});
+
+app.delete("/partner/:id", async(req, res) => {
+  const {id} = req.params;
+  const deletedPartner = await Partner.findByIdAndDelete(id);
+  return res.status(200).json(deletedPartner);
+})
