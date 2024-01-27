@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('./schema');
+
 const router = new express.Router();
 
 router.post("/api/users", User.post); //The post method is used to add a new resource to main resource
