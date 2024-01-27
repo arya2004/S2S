@@ -1,6 +1,6 @@
-import User from "../models/schema";
+import User from "../models/schema.js";
 
-exports.createUser = async (req, res) => {
+const createUser = async (req, res) => {
     if(!req.body) {
         res.status(400).send({message: "Content should not be empty!"});
         return;
@@ -14,20 +14,20 @@ exports.createUser = async (req, res) => {
       }
 }
 
-exports.updateUser = async (req, res) => {
+const updateUser = async (req, res) => {
     const { id } = req.params;
   await User.updateOne({_id: id}, req.body);
   const updatedUser = await DocumentFragment.findById(id);
   return res.status(200).json(updatedUser);
 }
 
-exports.deleteUser = async(req, res) => {
+const deleteUser = async(req, res) => {
     const {id} = req.params;
   const deletedUser = await User.findByIdAndDelete(id);
   return res.status(200).json(deletedUser);
 }
 
-exports.getAllUsers = async(req, res) => {
+const getAllUsers = async(req, res) => {
     try {
         const users = await User.find({});
         res.send(users);
@@ -36,7 +36,7 @@ exports.getAllUsers = async(req, res) => {
       }
 }
 
-exports.getUser = async(req, res) => {
+const getUser = async(req, res) => {
     try{
         const {id} = req.params;
         const user = await User.findById(id);
@@ -45,3 +45,5 @@ exports.getUser = async(req, res) => {
         res.status(500).json({message: error.message});
       }
 }
+
+export {createUser, updateUser, deleteUser, getAllUsers, getUser};
