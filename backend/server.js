@@ -4,13 +4,13 @@ import User from "./models/schema.js";
 import Partner from "./models/partnerSchema.js";
 import bodyparser from "body-parser";
 import router from "./routes/router.js";
-// import path from "path";
+import path from "path";
 const app = express();
 
 app.use(express.json());
 
-// app.use(bodyparser.urlencoded({extended: true}));
-// app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
+app.use(bodyparser.json());
 
 app.get("/", (req, res) => {
   res.json({ message: "hello from s2s server" });
