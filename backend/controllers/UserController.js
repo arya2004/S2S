@@ -14,7 +14,7 @@ exports.createUser = async (req, res) => {
       }
 }
 
-exports.updateuser = async (req, res) => {
+exports.updateUser = async (req, res) => {
     const { id } = req.params;
   await User.updateOne({_id: id}, req.body);
   const updatedUser = await DocumentFragment.findById(id);
