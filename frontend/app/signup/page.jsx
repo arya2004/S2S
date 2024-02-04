@@ -6,7 +6,7 @@ const page = () => {
   return (
     <main className="flex h-[100vh] w-[100vw] bg-[#264653] justify-center items-center">
         <div className=" border w-[24vw] h-[50vh] rounded-md"> 
-        <ConnectButton.Custom>
+        {/* <ConnectButton.Custom>
             {({ account, chain, openAccountModal, openConnectModal, openChainModal, accountLoading }) => {
                 return (
                     <div>
@@ -30,7 +30,8 @@ const page = () => {
                     </div>
                 );
             }}
-        </ConnectButton.Custom>
+        </ConnectButton.Custom> */}
+        <ConnectButton/>
         </div>
     </main>
   )

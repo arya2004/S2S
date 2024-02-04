@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   options={{
     projectId: '475c5396-812f-4e77-91db-55ff668bdabe',
     clientKey: 'capkMAUCfx3KFqwOhcoASzrOEOwVv6QYl6vNh6Di',
-    appId: 'sXZL66O7F3gH8EuX7EemZuVK1V8Dq7qMFJqes9DU',
+    appId: 'f70669fd-580f-4bf3-be15-da018fff4a90',
     chains: [
         Ethereum,
         EthereumGoerli
