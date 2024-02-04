@@ -2,7 +2,30 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion"
+import {socket} from '../socket.js'
+import { useEffect } from "react";
+
 export default function Home() {
+
+
+  useEffect(() => {
+    function onConnect() {
+      console.log("socket is connected");
+      setIsConnected(true);
+    }
+
+    function onDisconnect() {
+      setIsConnected(false);
+    }
+
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
+    return () => {
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+    };
+  },[])
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <motion.h1 animate={{y:-10}} className=" text-3xl font-bold">S2S</motion.h1>
