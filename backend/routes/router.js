@@ -1,10 +1,24 @@
-import express from 'express';
-import {createUser, updateUser, deleteUser, getAllUsers, getUser} from "../controllers/userController.js";
-import {createPartner, updatePartner, deletePartner, getAllPartners, getPartner} from "../controllers/partnerController.js";
+import express from "express";
+import {
+  createUser,
+  updateUser,
+  deleteUser,
+  getAllUsers,
+  getUser,
+} from "../controllers/UserController.js";
+import {
+  createPartner,
+  updatePartner,
+  deletePartner,
+  getAllPartners,
+  getPartner,
+} from "../controllers/partnerController.js";
+import { testResponse } from "../controllers/testResponse.js";
 
 const router = new express.Router();
 
 // User routes
+router.get("/", testResponse);
 router.post("/api/users", createUser); //The post method is used to add a new resource to main resource
 router.get("/api/users", getAllUsers);
 router.get("/api/users/:id", getUser); //url parameters
