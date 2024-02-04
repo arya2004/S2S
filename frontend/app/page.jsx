@@ -24,7 +24,7 @@ export default function Home() {
       duration-200 
       font-bold 
       text-xl"
-        href={"/signup"}
+        href={"/usrSignup"}
         
       >
         Get Started

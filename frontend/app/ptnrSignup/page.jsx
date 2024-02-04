@@ -1,8 +1,15 @@
 "use client"
 import '@particle-network/connect-react-ui/dist/index.css';
 import {ConnectButton} from '@particle-network/connect-react-ui'
-import React from "react"
+import React, { useState, useEffect } from "react"
+import { useAccount } from '@particle-network/connect-react-ui';
+import { useRouter } from 'next/navigation';
 const page = () => {
+    // check if user has logged into the particle account, if userAccount exists, redirect him to homepage
+    const [user, setUser] = useState(false);
+    const account = useAccount();
+    const router = useRouter();
+
   return (
     <main className="flex h-[100vh] w-[100vw] bg-[#264653] justify-center items-center">
         <div className=" border w-[24vw] h-[50vh] rounded-md"> 
@@ -32,6 +39,11 @@ const page = () => {
             }}
         </ConnectButton.Custom> */}
         <ConnectButton/>
+        {account && 
+        <div>
+            <button onClick={() => router.push('/')}>Homepage</button>
+        </div>
+        }
         </div>
     </main>
   )
