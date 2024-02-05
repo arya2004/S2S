@@ -4,6 +4,7 @@ import bodyparser from "body-parser";
 import router from "./routes/router.js";
 import { createServer } from "node:http";
 import { Server } from "socket.io";
+import cors from "cors";
 
 const app = express();
 const server = createServer(app);
@@ -15,7 +16,9 @@ const io = new Server(server, {
   },
 });
 
-app.use(express.json());
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 

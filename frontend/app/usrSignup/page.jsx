@@ -4,11 +4,22 @@ import {ConnectButton} from '@particle-network/connect-react-ui'
 import React, { useState, useEffect } from "react"
 import { useAccount } from '@particle-network/connect-react-ui';
 import { useRouter } from 'next/navigation';
-const page = () => {
+import  Form from '../components/Form.jsx';
+import { useWalletMetas } from '@particle-network/connect-react-ui';
+const page =  () => {
     // check if user has logged into the particle account, if userAccount exists, redirect him to homepage
     const [user, setUser] = useState(false);
     const account = useAccount();
     const router = useRouter();
+
+    
+    useEffect(() => {
+        if (account) {
+            console.log('account', account);
+        }
+        
+    
+    }, [account])
 
   return (
     <main className="flex h-[100vh] w-[100vw] bg-[#264653] justify-center items-center">
@@ -41,6 +52,8 @@ const page = () => {
         <ConnectButton/>
         {account && 
         <div>
+           
+            <Form/>
             <button onClick={() => router.push('/')}>Homepage</button>
         </div>
         }
