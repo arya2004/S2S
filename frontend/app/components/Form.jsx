@@ -14,10 +14,7 @@ const Form = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          address,
-          checked,
-        }),
+        body: JSON.stringify({ address, checked }),
       });
   
       if (response.ok) {
