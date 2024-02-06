@@ -6,17 +6,19 @@ import { useAccount } from '@particle-network/connect-react-ui';
 import { useRouter } from 'next/navigation';
 import  Form from '../components/Form.jsx';
 import { useWalletMetas } from '@particle-network/connect-react-ui';
+import { ParticleNetwork } from '@particle-network/auth';
+import {getUserInfo} from '@particle-network/auth';
 const page =  () => {
     // check if user has logged into the particle account, if userAccount exists, redirect him to homepage
     const [user, setUser] = useState(false);
     const account = useAccount();
-    const router = useRouter();
 
+    const router = useRouter();
+    const userInfo = particle.auth.getUserInfo();
     
     useEffect(() => {
-        if (account) {
-            console.log('account', account);
-        }
+        
+        console.log(userInfo);
         
     
     }, [account])

@@ -37,21 +37,23 @@ export default function Home() {
         <Image src="/home1.jpg" width={500} height={100} />
       </motion.div>
       <h3>By the community for the community.</h3>
-      <motion.a
-        animate={{ opacity: 1 }}
-        className=" bg-[#2A9D8F]
-         opacity-50
-       px-2 rounded-sm
-      hover:text-[#E9C46A]
-      transition-all 
-      duration-200 
-      font-bold 
-      text-xl"
-        href={"/usrSignup"}
-        
-      >
-        Get Started
-      </motion.a>
+      <div className="flex space-x-4">
+  <motion.a
+    animate={{ opacity: 1 }}
+    className="bg-[#2A9D8F] opacity-50 px-2 rounded-sm hover:text-[#E9C46A] transition-all duration-200 font-bold text-xl"
+    href={"/usrSignup"}
+  >
+    Signup as User
+  </motion.a>
+
+  <motion.a
+    animate={{ opacity: 1 }}
+    className="bg-[#2A9D8F] opacity-50 px-2 rounded-sm hover:text-[#E9C46A] transition-all duration-200 font-bold text-xl"
+    href={"/ptnrSignup"}
+  >
+    Signup as Partner
+  </motion.a>
+</div>
     </main>
   );
 }

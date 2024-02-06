@@ -1,9 +1,11 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Form = () => {
   const [address, setAddress] = useState('');
   const [checked, setChecked] = useState(false);
+
+ 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
