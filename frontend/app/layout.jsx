@@ -4,17 +4,10 @@ import {WalletEntryPosition} from '@particle-network/auth';
 import {Ethereum, EthereumGoerli} from '@particle-network/chains';
 import {evmWallets} from '@particle-network/connect';
 import "./globals.css";
-
-
+import Navbar from  "./components/Navbar"
 
 export default function RootLayout({ children }) {
-  return (
-    
-    
-    
-    
-    
-    
+  return ( 
     
     <html>
   <ModalProvider
@@ -57,8 +50,11 @@ particleAuthSort={[    //optional：display particle auth items and order
     'facebook'
 ]}
   >
-      <body>{children}</body>
+      <body>{children}
+      <Navbar />
+      </body>
       </ModalProvider>
+     
 </html>
  
   );
