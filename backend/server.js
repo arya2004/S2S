@@ -17,7 +17,7 @@ const io = new Server(server, {
 });
 
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: 'httplocalhost:3000'
 }));
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
