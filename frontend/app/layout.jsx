@@ -4,6 +4,7 @@ import { WalletEntryPosition } from "@particle-network/auth";
 import { Ethereum, EthereumGoerli } from "@particle-network/chains";
 import { evmWallets } from "@particle-network/connect";
 import "./globals.css";
+import Navbar from "./components/Navbar";
 
 export default function RootLayout({ children }) {
   return (
@@ -45,7 +46,9 @@ export default function RootLayout({ children }) {
           "facebook",
         ]}
       >
-        <body>{children}</body>
+        <body>{children}
+        <Navbar />
+        </body>
       </ModalProvider>
     </html>
   );
