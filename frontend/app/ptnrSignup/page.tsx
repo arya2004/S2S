@@ -10,57 +10,27 @@ import {
 } from '@particle-network/auth-core-modal';
 import { ParticleChains, chains, type Chain } from '@particle-network/chains';
 import { Button, Input, Popover, Select, Switch, message } from 'antd';
+
 import { useRef, useState } from 'react';
 
 const loginMethods = [
     {
         type: AuthType.email,
-        // icon: require('@/assets/images/login/email_icon.png').default.src,
+        icon: require('../../assets/logo/email_icon.png').default.src,
     },
     {
         type: AuthType.phone,
-        // icon: require('@/assets/images/login/phone_icon.png').default.src,
+        icon: require('../../assets/logo/phone_icon.png').default.src,
     },
     {
         type: AuthType.google,
-        // // icon: require('@/assets/images/login/google_icon.png').default.src,
+        icon: require('../../assets/logo/google_icon.png').default.src,
     },
     {
         type: AuthType.apple,
-        // // icon: require('@/assets/images/login/apple_icon.png').default.src,
+        icon: require('../../assets/logo/apple_icon.png').default.src,
     },
-    {
-        type: AuthType.github,
-        // // icon: require('@/assets/images/login/github_icon.png').default.src,
-    },
-    {
-        type: AuthType.facebook,
-        // // icon: require('@/assets/images/login/facebook_icon.png').default.src,
-    },
-    {
-        type: AuthType.twitter,
-        // // icon: require('@/assets/images/login/twitter_icon.png').default.src,
-    },
-    {
-        type: AuthType.microsoft,
-        // // icon: require('@/assets/images/login/microsoft_icon.png').default.src,
-    },
-    {
-        type: AuthType.discord,
-        // // icon: require('@/assets/images/login/discord_icon.png').default.src,
-    },
-    {
-        type: AuthType.twitch,
-        // // icon: require('@/assets/images/login/twitch_icon.png').default.src,
-    },
-    {
-        type: AuthType.linkedin,
-        // // icon: require('@/assets/images/login/linkedin_icon.png').default.src,
-    },
-    {
-        type: AuthType.jwt,
-        // icon: require('@/assets/images/login/jwt_icon.png').default.src,
-    },
+      
 ];
 
 const ConnectDashboard = () => {
@@ -71,7 +41,7 @@ const ConnectDashboard = () => {
     const [loginAccount, setLoginAccount] = useState<string>();
     const [authorizeMessage, setAuthorizeMessage] = useState<string>();
     const [connectChain, setConnectChain] = useState<Chain>();
-    const [selectAuthType, setSelectAuthType] = useState<AuthType.email | AuthType.phone | AuthType.jwt>(
+    const [selectAuthType, setSelectAuthType] = useState<AuthType.email | AuthType.phone>(
         AuthType.email
     );
 
@@ -163,6 +133,7 @@ const ConnectDashboard = () => {
         if (authType === AuthType.email || authType === AuthType.phone || authType === AuthType.jwt) {
             setLoginAccount(undefined);
             setVerifyCode(undefined);
+            // @ts-ignore
             setSelectAuthType(authType);
             return;
         }
@@ -334,7 +305,7 @@ const ConnectDashboard = () => {
                 </>
             )}
 
-            {selectAuthType === AuthType.jwt && (
+            {/* {selectAuthType === AuthType.jwt && (
                 <p className="center-center" style={{ marginTop: 16 }}>
                     <Input.TextArea
                         className="input-account"
@@ -343,7 +314,7 @@ const ConnectDashboard = () => {
                         placeholder="Json Web Token"
                     />
                 </p>
-            )}
+            )} */}
 
             <p className="center-center">
                 <Button
