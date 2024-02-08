@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
       <AuthCoreContextProvider options={authCoreOptions}>
 
       
-        <body>{children}
+        <body className="bg-white">{children}
         <Navbar />
         </body>
         </AuthCoreContextProvider>

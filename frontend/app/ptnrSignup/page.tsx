@@ -12,6 +12,7 @@ import { ParticleChains, chains, type Chain } from '@particle-network/chains';
 import { Button, Input, Popover, Select, Switch, message } from 'antd';
 
 import { useRef, useState } from 'react';
+import WalletInfo from '../components/WalletInfo';
 
 const loginMethods = [
     {
@@ -44,6 +45,10 @@ const ConnectDashboard = () => {
     const [selectAuthType, setSelectAuthType] = useState<AuthType.email | AuthType.phone>(
         AuthType.email
     );
+    const [isConnected, setIsConnected] = useState(false);
+    const [isGoogle, setIsGoogle] = useState(false);
+const { disconnect } = useConnect();
+
 
     const { themeType, language } = useCustomize();
 
@@ -109,6 +114,10 @@ const ConnectDashboard = () => {
         connect(options)
             .then(() => {
                 console.log('connect success');
+                setTimeout(() => {
+                    console.log(connectionStatus)
+                }, 4000)
+                setIsConnected(true);
             })
             .catch((error: Error) => {
                 console.log('connect error', error);
@@ -116,6 +125,7 @@ const ConnectDashboard = () => {
             })
             .finally(() => {
                 setLoginLoading(false);
+                
             });
     };
 
@@ -130,7 +140,7 @@ const ConnectDashboard = () => {
     };
 
     const connectAuthCore = (authType: AuthType) => {
-        if (authType === AuthType.email || authType === AuthType.phone || authType === AuthType.jwt) {
+        if (authType === AuthType.email || authType === AuthType.phone) {
             setLoginAccount(undefined);
             setVerifyCode(undefined);
             // @ts-ignore
@@ -153,13 +163,19 @@ const ConnectDashboard = () => {
             chain: connectChain,
             socialType: authType,
             prompt: oauthPrompt === 'none' ? undefined : oauthPrompt,
-        })
-            .then(() => {
+        }).then(() => {
                 message.success('Connect success');
+                setIsConnected(true);
             })
             .catch((error: any) => {
                 message.error(error.message || error);
             });
+            
+    };
+
+    const disconnectAuthCore = () => {
+        disconnect();
+        setIsConnected(false);
     };
 
     const getVerifyCode = async () => {
@@ -194,6 +210,7 @@ const ConnectDashboard = () => {
     };
 
     return (
+        !isConnected ? (
         <div className="login-box card">
             <h2 className="login-box-title">Connect Auth Core</h2>
 
@@ -339,9 +356,15 @@ const ConnectDashboard = () => {
                         />
                     );
                 })}
+         
+            <Button onClick={disconnectAuthCore}>Disconnect</Button>
+
             </div>
         </div>
-    );
+        ) : (
+            <WalletInfo />
+        )
+    ) 
 };
 
 export default ConnectDashboard;
