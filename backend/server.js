@@ -16,9 +16,11 @@ const io = new Server(server, {
   },
 });
 
-app.use(cors({
-  origin: 'httplocalhost:3000'
-}));
+app.use(
+  cors({
+    origin: "httplocalhost:3000",
+  })
+);
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
@@ -26,6 +28,13 @@ app.use("/", router);
 
 io.on("connection", (socket) => {
   console.log("new socket id:", socket.id);
+  socket.on("say-hello", () => {
+    console.log("hello from socket:", socket.id);
+  });
+
+  socket.on("position-update", (positionObj) => {
+    console.log(socket.id + "has position:", positionObj);
+  });
 });
 
 const PORT = process.env.PORT || 4000;
