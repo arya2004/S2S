@@ -164,8 +164,11 @@ const { disconnect } = useConnect();
             socialType: authType,
             prompt: oauthPrompt === 'none' ? undefined : oauthPrompt,
         }).then(() => {
+            setTimeout(() => {
                 message.success('Connect success');
                 setIsConnected(true);
+            }, 10000);
+                
             })
             .catch((error: any) => {
                 message.error(error.message || error);
