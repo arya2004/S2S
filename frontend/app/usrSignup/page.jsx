@@ -11,22 +11,29 @@ import { ModalProvider } from "@particle-network/connect-react-ui";
 import { WalletEntryPosition } from "@particle-network/auth";
 import { Ethereum, EthereumGoerli } from "@particle-network/chains";
 import { evmWallets } from "@particle-network/connect";
+import {useConnect} from '@particle-network/auth-core-modal';
 
 
 const page =  () => {
     // check if user has logged into the particle account, if userAccount exists, redirect him to homepage
     const [user, setUser] = useState(false);
     const account = useAccount();
-
+    const {connect, connected} = useConnect();
     const router = useRouter();
     
     
     useEffect(() => {
         
         console.log(account);
-        
+        if (connected) {
+          const userInfo = async() => await connect();
+          setTimeout(() => {
+            console.log(userInfo);
+          }, 5000);
+          
+        }
     
-    }, [account])
+    }, [connected, account])
 
   return (
     <ModalProvider

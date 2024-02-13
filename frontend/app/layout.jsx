@@ -8,6 +8,8 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import {AuthCoreContextProvider} from '@particle-network/auth-core-modal';
 import { merge } from "lodash";
+import {Provider} from 'react-redux';
+import store from './store/store';
 
 export const isServer = () => typeof window === 'undefined';
 
@@ -62,12 +64,15 @@ export default function RootLayout({ children }) {
                 />
   return (
     <html>
+
       <AuthCoreContextProvider options={authCoreOptions}>
+        <Provider store={store}>
 
       
         <body className="bg-white">{children}
         <Navbar />
         </body>
+        </Provider>
         </AuthCoreContextProvider>
     </html>
       
