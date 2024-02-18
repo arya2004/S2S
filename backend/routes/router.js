@@ -32,4 +32,6 @@ router.get("/api/partner/:id", getPartner); //url parameters
 router.put("/api/partner/:id", updatePartner); //url parameters
 router.delete("/api/partner/:id", deletePartner);
 
+// Cart routes
+
 export default router;

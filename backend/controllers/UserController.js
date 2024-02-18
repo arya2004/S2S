@@ -1,4 +1,5 @@
 import User from "../models/schema.js";
+import Cart from "../models/cartSchema.js";
 
 const createUser = async (req, res) => {
     if(!req.body) {
@@ -46,4 +47,36 @@ const getUser = async(req, res) => {
       }
 }
 
-export {createUser, updateUser, deleteUser, getAllUsers, getUser};
+const addItemToCart = async (req, res) => {
+    const { userId, productId, name, price } = req.body;
+    const quantity = Number.parseInt(req.body.quantity);
+
+    try {
+      let cart = await Cart.findOne9({userId});
+
+      if(cart) {
+        let itemIndex = cart.products.findIndex(p => p.productId == productId);
+        if (itemIndex > -1) {
+          // product exists in the cart, update the quantity
+          let productItem = cart.products[itemIndex];
+          cart.products[itemIndex] = productItem;
+        } else {
+          cart.products.push({ productId, quantity, name, price});
+        }
+        cart = await cart.save();
+        return res.status(201).send(cart);
+      } else {
+        // no cart for user, create new cart
+        const newCart = await Cart.create({
+          userId,
+          products: [{ productId, quantity, name, price}]
+        });
+        return res.status(201).send(newCart);
+      }
+    } catch(err) {
+      console.log(err);
+      res.status(500).send("Something went wrong");
+    }
+}
+
+export {createUser, updateUser, deleteUser, getAllUsers, getUser, addItemToCart};
