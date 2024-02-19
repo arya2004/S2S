@@ -11,6 +11,7 @@ export default function Home() {
   useEffect(() => {
     function onConnect() {
       console.log("socket is connected");
+      
       setIsConnected(true);
     }
 
@@ -18,7 +19,12 @@ export default function Home() {
       setIsConnected(false);
     }
 
+
     socket.on("connect", onConnect);
+    console.log(navigator.geolocation.getCurrentPosition((position)=>{
+      socket.emit("position-update",{latitude:position.coords.latitude,longitude:position.coords.longitude})
+    }))
+    socket.emit("say-hello")
     socket.on("disconnect", onDisconnect);
     return () => {
       socket.off("connect", onConnect);
