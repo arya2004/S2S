@@ -5,9 +5,10 @@ import { Ethereum, EthereumGoerli } from "@particle-network/chains";
 import { evmWallets } from "@particle-network/connect";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-
+import { AnonAadhaarProvider } from '@anon-aadhaar/react'
 export default function RootLayout({ children }) {
   return (
+    <AnonAadhaarProvider _useTestAadhaar={true} _fetchArtifactsFromServer={false}>
     <html>
       <ModalProvider
         options={{
@@ -51,5 +52,6 @@ export default function RootLayout({ children }) {
         </body>
       </ModalProvider>
     </html>
+    </AnonAadhaarProvider>
   );
 }

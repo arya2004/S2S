@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@anon-aadhaar/contracts": "^1.0.0",
+    "@anon-aadhaar/core": "^1.0.0",
+    "@anon-aadhaar/react": "^1.0.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.7",
@@ -17,10 +20,7 @@
     "@particle-network/connect": "^1.2.1",
     "@particle-network/connect-react-ui": "^1.2.1",
     "framer-motion": "^11.0.3",
-    "next": "14.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.0",
+    "next": "13.4.9",
     "socket.io-client": "^4.7.4"
   },
   "devDependencies": {
